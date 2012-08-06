@@ -17,6 +17,15 @@
 @synthesize logoutButton = _logoutButton;
 @synthesize feedButton = _feedButton;
 
+- (void)dealloc
+{
+    self.loginButton = nil;
+    self.logoutButton = nil;
+    self.feedButton = nil;
+    
+                       [super  dealloc];
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
@@ -146,14 +155,14 @@
     
     // The action links to be shown with the post in the feed
     NSArray* actionLinks = [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                      @"Get Started",@"name",@"http://m.facebook.com/apps/hackbookios/",@"link", nil], nil];
+                                                      @"Get Started",@"name",@"http://m.facebook.com/apps/myapplink/",@"link", nil], nil];
     NSString *actionLinksStr = [jsonWriter stringWithObject:actionLinks];
     // Dialog parameters
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                   @"I'm using the Hackbook for iOS app", @"name",
-                                   @"Hackbook for iOS.", @"caption",
-                                   @"Check out Hackbook for iOS to learn how you can make your iOS apps social using Facebook Platform.", @"description",
-                                   @"http://m.facebook.com/apps/hackbookios/", @"link",
+                                   @"I'm using my awesome Unity iOS game", @"name",
+                                   @"my awesome Unity iOS game.", @"caption",
+                                   @"", @"description",
+                                   @"http://m.facebook.com/apps/myapplink/", @"link",
                                    @"http://www.facebookmobileweb.com/hackbook/img/facebook_icon_large.png", @"picture",
                                    actionLinksStr, @"actions",
                                    nil];
@@ -267,7 +276,20 @@
     messageLabel.text = @"";
 }
 
-#pragma mark - dialog delegate
+- (NSDictionary *)parseURLParams:(NSString *)query {
+	NSArray *pairs = [query componentsSeparatedByString:@"&"];
+	NSMutableDictionary *params = [[[NSMutableDictionary alloc] init] autorelease];
+	for (NSString *pair in pairs) {
+		NSArray *kv = [pair componentsSeparatedByString:@"="];
+		NSString *val =
+        [[kv objectAtIndex:1]
+         stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+		[params setObject:val forKey:[kv objectAtIndex:0]];
+	}
+    return params;
+}
+
 /**
  * Called when an error prevents the Facebook API request from completing
  * successfully.
@@ -338,7 +360,7 @@
 
 /**
  * Called when the user granted additional permissions.
- */
+ *//*
 - (void)userDidGrantPermission {
     // After permissions granted follow up with next API call
     switch (currentAPICall) {
@@ -370,7 +392,7 @@
         default:
             break;
     }
-}
+}*/
 
 /**
  * Called when the user canceled the authorization dialog.

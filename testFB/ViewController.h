@@ -35,7 +35,7 @@ typedef enum apiCall {
     kAPIGraphUserVideosPost,
 } apiCall;
 
-@interface ViewController : UIViewController<FBSessionDelegate>
+@interface ViewController : UIViewController<FBSessionDelegate, FBDialogDelegate>
 {
       int currentAPICall;
     UIActivityIndicatorView *activityIndicator;
@@ -43,7 +43,7 @@ typedef enum apiCall {
     UIView *messageView;
 }
 
-@property (nonatomic, strong) UIButton *loginButton;
-@property (nonatomic, strong) UIButton *logoutButton;
-@property (nonatomic, strong) UIButton *feedButton;
+@property (nonatomic, retain) UIButton *loginButton;
+@property (nonatomic, retain) UIButton *logoutButton;
+@property (nonatomic, retain) UIButton *feedButton;
 @end
