@@ -155,18 +155,18 @@
     
     // The action links to be shown with the post in the feed
     NSArray* actionLinks = [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                      @"Get Started",@"name",@"http://m.facebook.com/apps/myapplink/",@"link", nil], nil];
+                                                      @"Get Started",@"name",@"http://m.facebook.com/apps/myunityapplink/",@"link", nil], nil];
     NSString *actionLinksStr = [jsonWriter stringWithObject:actionLinks];
     // Dialog parameters
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    @"I'm using my awesome Unity iOS game", @"name",
                                    @"my awesome Unity iOS game.", @"caption",
                                    @"", @"description",
-                                   @"http://m.facebook.com/apps/myapplink/", @"link",
-                                   @"http://www.facebookmobileweb.com/hackbook/img/facebook_icon_large.png", @"picture",
+                                   @"http://m.facebook.com/apps/myunityapplink/", @"link",
+                                   @"http://cdn1.hark.com/images/000/004/514/4514/original.jpg", @"picture",
                                    actionLinksStr, @"actions",
                                    nil];
-    
+
 
         Facebook *facebook = [SharedFB sharedFB];
 [facebook dialog:@"feed"   andParams:params   andDelegate:self];
