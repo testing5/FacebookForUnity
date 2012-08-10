@@ -32,14 +32,18 @@
         Facebook *facebook = [SharedFB sharedFB];
         facebook.sessionDelegate  = self;
         
-        UIButton *b = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        self.loginButton = b;
-        [b setTitle:@"login to FB" forState:UIControlStateNormal];
-        b.frame = CGRectMake(100,100,100,100);
-        [b addTarget:self action:@selector(loginPressed) forControlEvents:UIControlEventTouchUpInside];
+
+        self.loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *loginImage = [UIImage imageNamed:@"FBLogin.bundle/images/login.png"];
+        [self.loginButton setImage:loginImage forState:UIControlStateNormal];
+        //[self.loginButton setTitle:@"login to FB" forState:UIControlStateNormal];
+        self.loginButton.frame = CGRectMake(100,100,100,100);
+        [self.loginButton addTarget:self action:@selector(loginPressed) forControlEvents:UIControlEventTouchUpInside];
         
-        self.logoutButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [self.logoutButton setTitle:@"logout to" forState:UIControlStateNormal];
+        self.logoutButton =[UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *logoutImage = [UIImage imageNamed:@"FBLogin.bundle/images/logout.png"];
+        [self.logoutButton setImage:logoutImage forState:UIControlStateNormal];
+        //[self.logoutButton setTitle:@"logout to" forState:UIControlStateNormal];
         self.logoutButton.frame = CGRectMake(100,100,100,100);
         [self.logoutButton addTarget:self action:@selector(logoutPressed) forControlEvents:UIControlEventTouchUpInside];
 
